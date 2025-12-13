@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Anthony2kold — Creative HQ</title>
+  <style>
+    :root{
+      --bg:#070b18; --card:#0f1730; --soft:#121d3d;
+      --text:#e9eeff; --muted:#b8c6ff; --line:rgba(255,255,255,.08);
+      --good:#86efac; --warn:#fcd34d; --bad:#fb7185;
+      --shadow:0 16px 50px rgba(0,0,0,.45);
+      --r:18px;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    body{
+      margin:0;
+      color:var(--text);
+      background: radial-gradient(900px 500px at 12% 0%, #1a2a6a 0%, var(--bg) 55%);
+    }
+    .wrap{max-width:1050px;margin:0 auto;padding:22px 14px;}
+    .top{
+      display:flex; gap:14px; flex-wrap:wrap; align-items:stretch;
+    }
+    .hero{
+      flex: 1 1 520px;
+      background: linear-gradient(180deg, rgba(134,239,172,.12), rgba(96,165,250,.10));
+      border:1px solid rgba(134,239,172,.20);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      padding:16px 16px 14px;
+    }
+    h1{margin:0 0 6px;font-size:30px;letter-spacing:.2px;}
+    .sub{margin:0;color:var(--muted)}
+    .pillrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .pill{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(15,23,48,.65);
+      padding:8px 10px; border-radius:999px; font-size:13px; color:var(--muted)
+    }
+    .side{
+      flex: 0 1 360px;
+      background: rgba(15,23,48,.85);
+      border:1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      padding:14px;
+    }
+    .statrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .stat{
+      flex:1 1 100px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      background: rgba(18,29,61,.6);
+      padding:10px;
+      text-align:center;
+    }
+    .num{font-weight:900;font-size:22px}
+    .lbl{color:var(--muted);font-size:12px;margin-top:2px}
+    .grid{
+      display:grid; gap:12px; margin-top:14px;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    .card{
+      grid-column: span 6;
+      background: rgba(15,23,48,.88);
+      border:1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      padding:14px;
+    }
+    @media(max-width:860px){ .card{grid-column: span 12;} }
+    h2{margin:0 0 10px;font-size:18px}
+    textarea,input{
+      width:100%;
+      background: rgba(18,29,61,.65);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      padding:10px 12px;
+      outline:none;
+      box-sizing:border-box;
+    }
+    button{
+      border:0; cursor:pointer;
+      background: rgba(134,239,172,.18);
+      border:1px solid rgba(134,239,172,.28);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius: 14px;
+      font-weight:700;
+    }
+    button.ghost{
+      background: rgba(96,165,250,.14);
+      border:1px solid rgba(96,165,250,.25);
+    }
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .tiny{color:var(--muted);font-size:12px}
+    .list{display:grid;gap:10px;margin-top:10px}
+    .item{
+      display:flex;justify-content:space-between;gap:10px;align-items:flex-start;
+      padding:10px 12px;border-radius:16px;
+      background: rgba(18,29,61,.55);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .tag{
+      font-size:12px; color:var(--muted);
+      border:1px solid rgba(255,255,255,.10);
+      padding:4px 8px;border-radius:999px;
+      white-space:nowrap;
+    }
+    .ok{color:var(--good)}
+    .warn{color:var(--warn)}
+    .bad{color:var(--bad)}
+    .progress{
+      height:12px; border-radius:999px; overflow:hidden;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      margin-top:10px;
+    }
+    .bar{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, rgba(96,165,250,.9), rgba(134,239,172,.9));
+    }
+    dialog{
+      border: none;
+      border-radius: 18px;
+      padding: 0;
+      width: min(520px, calc(100% - 26px));
+      background: #0f1730;
+      color: var(--text);
+      box-shadow: 0 30px 80px rgba(0,0,0,.55);
+    }
+    dialog::backdrop{ background: rgba(0,0,0,.65); }
+    .mTop{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;
+      background: linear-gradient(180deg, rgba(96,165,250,.18), rgba(134,239,172,.10));
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .mBody{padding:14px;color:var(--muted);line-height:1.55}
+    .mActions{padding:0 14px 14px;display:flex;justify-content:flex-end;gap:10px}
+    .x{background:transparent;border:0;color:var(--text);font-size:18px;cursor:pointer}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="hero">
+        <h1>🎮 Anthony2kold’s Creative HQ</h1>
+        <p class="sub">Funny mode: ON. Brain: CRACKED. Controller: warmed up. 🧠🔥</p>
+        <div class="pillrow">
+          <span class="pill">Mode: Creative Lab</span>
+          <span class="pill">Battle Pass: Dad Edition</span>
+          <span class="pill">Vault: Brain Teasers</span>
+        </div>
+      </div>
+      <div class="side">
+        <div class="row" style="justify-content:space-between">
+          <div>
+            <div class="tiny">Player</div>
+            <div style="font-weight:900;font-size:18px">Anthony2kold</div>
+          </div>
+          <span class="tag">W-key energy ✅</span>
+        </div>
+
+        <div class="statrow">
+          <div class="stat"><div class="num" id="xp">0</div><div class="lbl">XP</div></div>
+          <div class="stat"><div class="num" id="tier">1</div><div class="lbl">Tier</div></div>
+          <div class="stat"><div class="num" id="unlocks">0</div><div class="lbl">Rewards</div></div>
+        </div>
+
+        <div class="tiny" style="margin-top:10px">Tier progress</div>
+        <div class="progress"><div class="bar" id="bar"></div></div>
+        <div class="tiny" id="progText" style="margin-top:8px">0 / 100 XP to next tier</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- Creative Lab -->
+      <section class="card">
+        <h2>🧩 Creative Lab (Island Codes)</h2>
+        <p class="tiny">Add your island codes here (you can update anytime). Example format: 1234-5678-9012</p>
+        <div class="row" style="margin-top:10px">
+          <input id="codeInput" placeholder="Island code (e.g., 1234-5678-9012)" />
+          <button class="ghost" id="addCodeBtn">Add</button>
+        </div>
+        <div class="list" id="codes"></div>
+      </section>
+
+      <!-- Battle Pass -->
+      <section class="card">
+        <h2>🎁 Battle Pass: Dad Edition</h2>
+        <p class="tiny">Complete missions, earn XP, unlock rewards. (No grind, just vibes.)</p>
+        <div class="list" id="missions"></div>
+        <div class="row" style="margin-top:10px">
+          <button id="resetBtn" class="ghost">Reset (Dad only)</button>
+          <span class="tiny">Reset clears XP + unlocks (for testing).</span>
+        </div>
+      </section>
+
+      <!-- Brain Teaser Vault -->
+      <section class="card">
+        <h2>🧠 Vault: Brain Teasers</h2>
+        <p class="tiny">Solve puzzles to unlock rewards. If you rage quit, you owe Dad one “GG.”</p>
+        <div class="list" id="puzzles"></div>
+      </section>
+
+      <!-- Reward Vault -->
+      <section class="card">
+        <h2>🔐 Reward Vault</h2>
+        <p class="tiny">Unlocked rewards appear here. (Yes, these are real.)</p>
+        <div class="list" id="rewards"></div>
+      </section>
+    </div>
+
+    <p class="tiny" style="margin-top:14px">
+      Note: This is a fan-made companion site. Not affiliated with Epic Games/Fortnite.
+    </p>
+  </div>
+
+  <dialog id="modal">
+    <div class="mTop">
+      <strong id="mTitle">Unlocked!</strong>
+      <button class="x" id="mClose">✖</button>
+    </div>
+    <div class="mBody" id="mBody"></div>
+    <div class="mActions">
+      <button id="mOk">GG ✅</button>
+    </div>
+  </dialog>
+
+<script>
+  // ---- Simple XP/Tier system ----
+  const state = JSON.parse(localStorage.getItem("anthony_hq")) || {
+    xp: 0,
+    rewardsUnlocked: [],
+    missionsDone: {},
+    puzzlesSolved: {}
+  };
+
+  const XP_PER_TIER = 100;
+
+  const modal = document.getElementById("modal");
+  const mTitle = document.getElementById("mTitle");
+  const mBody = document.getElementById("mBody");
+  const openModal = (title, body) => {
+    mTitle.textContent = title;
+    mBody.textContent = body;
+    modal.showModal();
+  };
+  const closeModal = () => modal.close();
+  document.getElementById("mClose").onclick = closeModal;
+  document.getElementById("mOk").onclick = closeModal;
+
+  function save(){ localStorage.setItem("anthony_hq", JSON.stringify(state)); }
+  function tier(){ return Math.floor(state.xp / XP_PER_TIER) + 1; }
+  function progInTier(){ return state.xp % XP_PER_TIER; }
+
+  function renderStats(){
+    document.getElementById("xp").textContent = state.xp;
+    document.getElementById("tier").textContent = tier();
+    document.getElementById("unlocks").textContent = state.rewardsUnlocked.length;
+    const p = progInTier();
+    document.getElementById("bar").style.width = (p / XP_PER_TIER * 100) + "%";
+    document.getElementById("progText").textContent = `${p} / ${XP_PER_TIER} XP to next tier`;
+  }
+
+  function addXP(amount, reason){
+    state.xp += amount;
+    save();
+    renderStats();
+    openModal("XP Gained 💥", `${reason} (+${amount} XP)`);
+    checkRewardTiers();
+  }
+
+  // ---- Missions (funny + real) ----
+  const missionsData = [
+    { id:"m1", name:"🎒 Straight-A Sweep", xp:40, desc:"Do your school work like a boss. (No cap.)" },
+    { id:"m2", name:"🧹 House Clean Carry", xp:25, desc:"Help around the house. This is the real endgame." },
+    { id:"m3", name:"💪 IRL Warm-Up", xp:20, desc:"Move your body today. Even 15 minutes counts." },
+    { id:"m4", name:"🧠 Creative Builder", xp:35, desc:"Build or improve one Creative map idea." }
+  ];
+
+  function renderMissions(){
+    const box = document.getElementById("missions");
+    box.innerHTML = "";
+    missionsData.forEach(m => {
+      const done = !!state.missionsDone[m.id];
+      const el = document.createElement("div");
+      el.className = "item";
+      el.innerHTML = `
+        <div>
+          <div style="font-weight:800">${m.name} <span class="tiny">(+${m.xp} XP)</span></div>
+          <div class="tiny">${m.desc}</div>
+        </div>
+        <div class="row">
+          <span class="tag ${done ? "ok" : "warn"}">${done ? "Done" : "Ready"}</span>
+          <button ${done ? "disabled" : ""} data-mid="${m.id}">${done ? "✅" : "Complete"}</button>
+        </div>
+      `;
+      el.querySelector("button").onclick = () => {
+        state.missionsDone[m.id] = true;
+        save();
+        renderMissions();
+        addXP(m.xp, m.name);
+      };
+      box.appendChild(el);
+    });
+  }
+
+  // ---- Brain teasers (strategic) ----
+  // Edit answers if you want. Keep them lowercase in `answer`.
+  const puzzlesData = [
+    {
+      id:"p1",
+      name:"🔢 Pattern Check",
+      prompt:"What number completes the sequence: 2, 6, 12, 20, 30, __ ?",
+      hint:"Look at the differences.",
+      answer:"42",
+      reward:"🎬 Reward: Movie night (you pick the movie + snacks).",
+      xp:40
+    },
+    {
+      id:"p2",
+      name:"🧩 Caesar Shift",
+      prompt:"Decode this (shift -3): 'DQWKRQB' → ?",
+      hint:"A=1… or just think letters back 3.",
+      answer:"anthony",
+      reward:"🍔 Reward: Favorite dinner + dessert (your call).",
+      xp:50
+    },
+    {
+      id:"p3",
+      name:"🕵️ House Quest (optional)",
+      prompt:"Riddle: 'I’m cold inside but I’m not the freezer. I keep your quick wins.' Where is it?",
+      hint:"Kitchen vibes.",
+      answer:"fridge",
+      reward:"🔐 Vault clue unlocked (Dad will hand you the next clue).",
+      xp:35
+    }
+  ];
+
+  function renderPuzzles(){
+    const box = document.getElementById("puzzles");
+    box.innerHTML = "";
+    puzzlesData.forEach(p => {
+      const solved = !!state.puzzlesSolved[p.id];
+      const el = document.createElement("div");
+      el.className = "item";
+      el.innerHTML = `
+        <div style="flex:1">
+          <div style="font-weight:800">${p.name} <span class="tiny">(+${p.xp} XP)</span></div>
+          <div class="tiny" style="margin-top:6px">${p.prompt}</div>
+          <div class="tiny" style="margin-top:6px"><strong>Hint:</strong> ${p.hint}</div>
+          <div class="row" style="margin-top:8px">
+            <input ${solved ? "disabled" : ""} data-pid="${p.id}" placeholder="Answer..." />
+            <button ${solved ? "disabled" : ""} data-check="${p.id}">${solved ? "Solved ✅" : "Check"}</button>
+          </div>
+        </div>
+        <div><span class="tag ${solved ? "ok" : "warn"}">${solved ? "Unlocked" : "Locked"}</span></div>
+      `;
+      el.querySelector("button").onclick = () => {
+        const input = el.querySelector("input");
+        const guess = (input.value || "").trim().toLowerCase();
+        if (!guess) return openModal("Bruh…", "Type an answer first 😭");
+        if (guess === p.answer){
+          state.puzzlesSolved[p.id] = true;
+          save();
+          addXP(p.xp, p.name);
+          unlockReward(p.reward);
+          renderPuzzles();
+        } else {
+          openModal("❌ Not quite", "Close… but not cracked yet. Try again.");
+        }
+      };
+      box.appendChild(el);
+    });
+  }
+
+  // ---- Rewards unlocked by tiers + puzzles ----
+  const tierRewards = [
+    { tier:2, text:"🎮 1 hour of gaming together (your choice)."},
+    { tier:3, text:"🍕 Late-night snack run (Dad pays… somehow 😅)."},
+    { tier:4, text:"🧱 Creative Project: You pick a map theme & we plan it together."},
+  ];
+
+  function unlockReward(text){
+    if (state.rewardsUnlocked.includes(text)) return;
+    state.rewardsUnlocked.push(text);
+    save();
+    renderRewards();
+    openModal("🎁 Reward Unlocked!", text);
+  }
+
+  function checkRewardTiers(){
+    tierRewards.forEach(r => {
+      if (tier() >= r.tier) unlockReward(r.text);
+    });
+  }
+
+  function renderRewards(){
+    const box = document.getElementById("rewards");
+    box.innerHTML = "";
+    if (!state.rewardsUnlocked.length){
+      box.innerHTML = `<div class="item"><div class="tiny">No rewards unlocked yet. Get cracked. 🧠</div><span class="tag warn">Locked</span></div>`;
+      return;
+    }
+    state.rewardsUnlocked.forEach((t, i) => {
+      const el = document.createElement("div");
+      el.className = "item";
+      el.innerHTML = `<div style="font-weight:700">${t}</div><span class="tag ok">Claimed</span>`;
+      box.appendChild(el);
+    });
+  }
+
+  // ---- Creative codes list ----
+  function renderCodes(){
+    const box = document.getElementById("codes");
+    const codes = JSON.parse(localStorage.getItem("anthony_codes") || "[]");
+    box.innerHTML = "";
+    if (!codes.length){
+      box.innerHTML = `<div class="item"><div class="tiny">No island codes yet. Drop one when you’re ready.</div><span class="tag">Creative</span></div>`;
+      return;
+    }
+    codes.forEach((c, idx) => {
+      const el = document.createElement("div");
+      el.className = "item";
+      el.innerHTML = `
+        <div>
+          <div style="font-weight:800">Island Code</div>
+          <div class="tiny">${c}</div>
+        </div>
+        <div class="row">
+          <button class="ghost" data-copy="${c}">Copy</button>
+          <button data-del="${idx}">Remove</button>
+        </div>
+      `;
+      el.querySelector("[data-copy]").onclick = () => {
+        navigator.clipboard?.writeText(c);
+        openModal("Copied ✅", "Island code copied to clipboard.");
+      };
+      el.querySelector("[data-del]").onclick = () => {
+        codes.splice(idx, 1);
+        localStorage.setItem("anthony_codes", JSON.stringify(codes));
+        renderCodes();
+      };
+      box.appendChild(el);
+    });
+  }
+
+  document.getElementById("addCodeBtn").onclick = () => {
+    const v = document.getElementById("codeInput").value.trim();
+    if (!v) return openModal("Hold up", "Enter an island code first.");
+    const codes = JSON.parse(localStorage.getItem("anthony_codes") || "[]");
+    codes.unshift(v);
+    localStorage.setItem("anthony_codes", JSON.stringify(codes));
+    document.getElementById("codeInput").value = "";
+    renderCodes();
+  };
+
+  document.getElementById("resetBtn").onclick = () => {
+    if (!confirm("Reset XP, missions, puzzles, rewards? (Dad only)")) return;
+    localStorage.removeItem("anthony_hq");
+    state.xp = 0; state.rewardsUnlocked = []; state.missionsDone = {}; state.puzzlesSolved = {};
+    save();
+    renderAll();
+    openModal("Reset ✅", "HQ wiped. Fresh drop.");
+  };
+
+  function renderAll(){
+    renderStats();
+    renderMissions();
+    renderPuzzles();
+    renderRewards();
+    renderCodes();
+    checkRewardTiers();
+  }
+
+  renderAll();
+</script>
+</body>
+  </html>
+  
