@@ -3,439 +3,431 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Anthony2kold — Creative HQ</title>
+  <title>Anthony2kold’s Creative HQ</title>
+
   <style>
     :root{
       --bg:#070b18; --card:#0f1730; --soft:#121d3d;
       --text:#e9eeff; --muted:#b8c6ff; --line:rgba(255,255,255,.08);
-      --good:#86efac; --warn:#fcd34d; --bad:#fb7185;
       --shadow:0 16px 50px rgba(0,0,0,.45);
-      --r:18px;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --r:18px; --a1:#60a5fa; --a2:#86efac;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
-    body{
-      margin:0;
-      color:var(--text);
-      background: radial-gradient(900px 500px at 12% 0%, #1a2a6a 0%, var(--bg) 55%);
-    }
-    .wrap{max-width:1050px;margin:0 auto;padding:22px 14px;}
-    .top{
-      display:flex; gap:14px; flex-wrap:wrap; align-items:stretch;
-    }
-    .hero{
-      flex: 1 1 520px;
-      background: linear-gradient(180deg, rgba(134,239,172,.12), rgba(96,165,250,.10));
-      border:1px solid rgba(134,239,172,.20);
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
-      padding:16px 16px 14px;
-    }
-    h1{margin:0 0 6px;font-size:30px;letter-spacing:.2px;}
-    .sub{margin:0;color:var(--muted)}
-    .pillrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .pill{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(15,23,48,.65);
-      padding:8px 10px; border-radius:999px; font-size:13px; color:var(--muted)
-    }
-    .side{
-      flex: 0 1 360px;
-      background: rgba(15,23,48,.85);
-      border:1px solid var(--line);
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
-      padding:14px;
-    }
-    .statrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .stat{
-      flex:1 1 100px;
-      border:1px solid rgba(255,255,255,.08);
-      border-radius: 16px;
-      background: rgba(18,29,61,.6);
-      padding:10px;
-      text-align:center;
-    }
-    .num{font-weight:900;font-size:22px}
-    .lbl{color:var(--muted);font-size:12px;margin-top:2px}
-    .grid{
-      display:grid; gap:12px; margin-top:14px;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-    }
-    .card{
-      grid-column: span 6;
-      background: rgba(15,23,48,.88);
-      border:1px solid var(--line);
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
-      padding:14px;
-    }
-    @media(max-width:860px){ .card{grid-column: span 12;} }
-    h2{margin:0 0 10px;font-size:18px}
-    textarea,input{
-      width:100%;
-      background: rgba(18,29,61,.65);
-      color:var(--text);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: 14px;
-      padding:10px 12px;
-      outline:none;
-      box-sizing:border-box;
-    }
+    body{margin:0;color:var(--text);background:radial-gradient(900px 500px at 12% 0%, #1a2a6a 0%, var(--bg) 55%);}
+    .wrap{max-width:1100px;margin:auto;padding:18px}
+    .card{background:rgba(15,23,48,.88);border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:var(--shadow);}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+    .col6{grid-column:span 6}
+    .col12{grid-column:span 12}
+    @media(max-width:850px){.col6{grid-column:span 12}}
+    h1{margin:0;font-size:30px}
+    h2{margin:0 0 8px;font-size:18px}
+    .sub{color:var(--muted);margin:6px 0 0}
+    .tiny{color:var(--muted);font-size:12px;line-height:1.45}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
     button{
-      border:0; cursor:pointer;
-      background: rgba(134,239,172,.18);
+      background:rgba(134,239,172,.18);
       border:1px solid rgba(134,239,172,.28);
       color:var(--text);
-      padding:10px 12px;
-      border-radius: 14px;
-      font-weight:700;
+      padding:8px 12px;border-radius:14px;font-weight:800;cursor:pointer
     }
-    button.ghost{
-      background: rgba(96,165,250,.14);
-      border:1px solid rgba(96,165,250,.25);
+    button.ghost{background:rgba(96,165,250,.14);border-color:rgba(96,165,250,.25)}
+    button:disabled{opacity:.55;cursor:not-allowed}
+    input,textarea{
+      width:100%;background:rgba(18,29,61,.6);color:var(--text);
+      border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:10px;box-sizing:border-box;
     }
-    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    .tiny{color:var(--muted);font-size:12px}
     .list{display:grid;gap:10px;margin-top:10px}
     .item{
-      display:flex;justify-content:space-between;gap:10px;align-items:flex-start;
-      padding:10px 12px;border-radius:16px;
-      background: rgba(18,29,61,.55);
-      border:1px solid rgba(255,255,255,.08);
+      display:flex;justify-content:space-between;gap:10px;
+      padding:10px;border-radius:14px;background:rgba(18,29,61,.55);
+      border:1px solid rgba(255,255,255,.08)
     }
-    .tag{
-      font-size:12px; color:var(--muted);
-      border:1px solid rgba(255,255,255,.10);
-      padding:4px 8px;border-radius:999px;
-      white-space:nowrap;
-    }
-    .ok{color:var(--good)}
-    .warn{color:var(--warn)}
-    .bad{color:var(--bad)}
-    .progress{
-      height:12px; border-radius:999px; overflow:hidden;
-      background: rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.10);
-      margin-top:10px;
-    }
-    .bar{
-      height:100%;
-      width:0%;
-      background: linear-gradient(90deg, rgba(96,165,250,.9), rgba(134,239,172,.9));
-    }
-    dialog{
-      border: none;
-      border-radius: 18px;
-      padding: 0;
-      width: min(520px, calc(100% - 26px));
-      background: #0f1730;
-      color: var(--text);
-      box-shadow: 0 30px 80px rgba(0,0,0,.55);
-    }
-    dialog::backdrop{ background: rgba(0,0,0,.65); }
-    .mTop{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;
-      background: linear-gradient(180deg, rgba(96,165,250,.18), rgba(134,239,172,.10));
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .mBody{padding:14px;color:var(--muted);line-height:1.55}
-    .mActions{padding:0 14px 14px;display:flex;justify-content:flex-end;gap:10px}
-    .x{background:transparent;border:0;color:var(--text);font-size:18px;cursor:pointer}
+    .tag{font-size:12px;border:1px solid rgba(255,255,255,.12);padding:4px 8px;border-radius:999px;white-space:nowrap;color:var(--muted)}
+    .progress{height:10px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden}
+    .bar{height:100%;width:0%;background:linear-gradient(90deg,var(--a1),var(--a2))}
+    hr{border:0;border-top:1px solid var(--line);margin:14px 0}
+    dialog{border:none;border-radius:18px;background:#0f1730;color:var(--text);max-width:560px}
+    dialog::backdrop{background:rgba(0,0,0,.7)}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;}
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="top">
-      <div class="hero">
-        <h1>🎮 Anthony2kold’s Creative HQ</h1>
-        <p class="sub">Funny mode: ON. Brain: CRACKED. Controller: warmed up. 🧠🔥</p>
-        <div class="pillrow">
-          <span class="pill">Mode: Creative Lab</span>
-          <span class="pill">Battle Pass: Dad Edition</span>
-          <span class="pill">Vault: Brain Teasers</span>
-        </div>
+<div class="wrap">
+
+  <div class="card col12">
+    <h1>🎮 Anthony2kold’s Creative HQ</h1>
+    <p class="sub">Funny mode: ON. Brain: CRACKED. Controller: warmed up. 🧠🔥</p>
+    <p class="tiny">This is a fan-made companion site. Not affiliated with Epic Games/Fortnite.</p>
+  </div>
+
+  <div class="grid" style="margin-top:12px">
+
+    <!-- STATS -->
+    <div class="card col6">
+      <h2>📊 Player Stats</h2>
+      <div class="row">
+        <div>XP: <b id="xp">0</b></div>
+        <div>Tier: <b id="tier">1</b></div>
+        <div>Rewards: <b id="rewardsCount">0</b></div>
       </div>
-      <div class="side">
-        <div class="row" style="justify-content:space-between">
-          <div>
-            <div class="tiny">Player</div>
-            <div style="font-weight:900;font-size:18px">Anthony2kold</div>
-          </div>
-          <span class="tag">W-key energy ✅</span>
-        </div>
-
-        <div class="statrow">
-          <div class="stat"><div class="num" id="xp">0</div><div class="lbl">XP</div></div>
-          <div class="stat"><div class="num" id="tier">1</div><div class="lbl">Tier</div></div>
-          <div class="stat"><div class="num" id="unlocks">0</div><div class="lbl">Rewards</div></div>
-        </div>
-
-        <div class="tiny" style="margin-top:10px">Tier progress</div>
-        <div class="progress"><div class="bar" id="bar"></div></div>
-        <div class="tiny" id="progText" style="margin-top:8px">0 / 100 XP to next tier</div>
+      <div class="progress" style="margin-top:10px"><div id="bar" class="bar"></div></div>
+      <div class="tiny" id="progText" style="margin-top:8px">0 / 100 XP to next tier</div>
+      <div class="row" style="margin-top:10px">
+        <button class="ghost" id="resetBtn">Reset (Dad only)</button>
       </div>
     </div>
 
-    <div class="grid">
-      <!-- Creative Lab -->
-      <section class="card">
-        <h2>🧩 Creative Lab (Island Codes)</h2>
-        <p class="tiny">Add your island codes here (you can update anytime). Example format: 1234-5678-9012</p>
-        <div class="row" style="margin-top:10px">
-          <input id="codeInput" placeholder="Island code (e.g., 1234-5678-9012)" />
-          <button class="ghost" id="addCodeBtn">Add</button>
+    <!-- HARD KNOCKS -->
+    <div class="card col6">
+      <h2>🧱 Hard Knocks Mode</h2>
+      <div class="tiny" id="knockText">—</div>
+      <div class="row" style="margin-top:10px">
+        <button id="claimKnockBtn">Claim +10 Grit XP</button>
+        <span class="tiny">One claim per page load.</span>
+      </div>
+    </div>
+
+    <!-- CREATIVE LAB -->
+    <div class="card col6">
+      <h2>🧩 Creative Lab (Island Codes)</h2>
+      <div class="tiny">Add your island codes here (update anytime). Example format: 1234-5678-9012</div>
+      <div class="row" style="margin-top:10px">
+        <input id="codeInput" placeholder="Island code (e.g., 1234-5678-9012)" />
+        <button id="addCodeBtn">Add</button>
+      </div>
+      <div id="codes" class="list"></div>
+    </div>
+
+    <!-- BATTLE PASS -->
+    <div class="card col6">
+      <h2>🎁 Battle Pass: Dad Edition</h2>
+      <div class="tiny">Complete missions, earn XP, unlock rewards. (No grind, just vibes.)</div>
+      <div id="missions" class="list"></div>
+    </div>
+
+    <!-- PUZZLES -->
+    <div class="card col6">
+      <h2>🧠 Vault: Brain Teasers</h2>
+      <div class="tiny">Solve puzzles to unlock rewards. If you rage quit, you owe Dad one “GG”.</div>
+      <div id="puzzles" class="list"></div>
+    </div>
+
+    <!-- FACTS -->
+    <div class="card col6">
+      <h2>🧪 Science + World Facts</h2>
+      <div class="item" style="align-items:flex-start">
+        <div>
+          <div style="font-weight:900">Today’s Fact</div>
+          <div class="tiny" id="factText">Press “Give me a fact”.</div>
+          <div class="tiny" id="factStatus" style="margin-top:6px">Explain it back to Dad to claim XP 😄</div>
         </div>
-        <div class="list" id="codes"></div>
-      </section><section class="card">
-  <h2>🧪 Science & World Facts (Cracked Mode)</h2>
-  <p class="tiny">Press for a random fact. If you can explain it back, you’re officially built different.</p>
-  <div class="row" style="margin-top:10px">
-    <button id="factBtn">Give me a fact</button>
-    <button class="ghost" id="claimFactXpBtn" disabled>Claim +15 XP</button>
-    <span class="tiny" id="factStatus">No fact yet.</span>
+        <span class="tag">Science</span>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <button id="factBtn">Give me a fact</button>
+        <button class="ghost" id="claimFactBtn" disabled>Claim +15 XP</button>
+      </div>
+    </div>
+
+    <!-- REWARD VAULT -->
+    <div class="card col6">
+      <h2>🔐 Reward Vault</h2>
+      <div id="rewards" class="list"></div>
+    </div>
+
+    <!-- LIVE LEADERBOARD (FIREBASE) -->
+    <div class="card col6">
+      <h2>🏆 Live Squad Leaderboard (Firebase)</h2>
+      <div class="tiny">This is the “Room Code” part. Everyone uses the same room code to share one live scoreboard.</div>
+
+      <div class="row" style="margin-top:10px">
+        <input id="roomInput" placeholder="Room code (example: ANTHONY-SQUAD)" />
+        <button class="ghost" id="joinRoomBtn">Join Room</button>
+      </div>
+
+      <div class="tiny" id="fbStatus" style="margin-top:8px">Firebase status: Not connected yet.</div>
+      <div id="leaderboard" class="list"></div>
+
+      <hr>
+
+      <div class="tiny">
+        If it won’t connect, add your GitHub Pages domain to:
+        <b>Firebase → Authentication → Settings → Authorized domains</b>
+      </div>
+    </div>
+
+    <!-- BACKUP SQUAD SHARE (NO BACKEND) -->
+    <div class="card col6">
+      <h2>🤝 Squad Share (Backup — No Firebase)</h2>
+      <div class="tiny">Export a code and send it in text/Discord. Import codes to compare.</div>
+
+      <div class="row" style="margin-top:10px">
+        <button id="exportBtn">Export</button>
+        <button class="ghost" id="copyExportBtn" disabled>Copy</button>
+      </div>
+      <textarea id="exportBox" class="mono" rows="3" readonly placeholder="(Click Export)"></textarea>
+
+      <div class="row" style="margin-top:10px">
+        <input id="importName" placeholder="Name (Nephew / Friend)" />
+        <button class="ghost" id="importBtn">Import</button>
+      </div>
+      <textarea id="importBox" class="mono" rows="3" placeholder="Paste their exported code here..."></textarea>
+      <div id="squadBoard" class="list"></div>
+    </div>
+
   </div>
-  <div class="item" style="margin-top:10px">
-    <div>
-      <div style="font-weight:800">Today’s Fact</div>
-      <div class="tiny" id="factText">—</div>
-    </div>
-    <span class="tag">Science</span>
+</div>
+
+<dialog id="modal">
+  <div style="padding:14px 14px 0;font-weight:900" id="mTitle">Unlocked!</div>
+  <div style="padding:10px 14px;color:var(--muted);line-height:1.55" id="mBody"></div>
+  <div style="padding:0 14px 14px;display:flex;justify-content:flex-end;gap:10px">
+    <button id="mOk">GG ✅</button>
   </div>
-      </section>
-      
+</dialog>
 
-      <!-- Battle Pass -->
-      <section class="card">
-        <h2>🎁 Battle Pass: Dad Edition</h2>
-        <p class="tiny">Complete missions, earn XP, unlock rewards. (No grind, just vibes.)</p>
-        <div class="list" id="missions"></div>
-        <div class="row" style="margin-top:10px">
-          <button id="resetBtn" class="ghost">Reset (Dad only)</button>
-          <span class="tiny">Reset clears XP + unlocks (for testing).</span>
-        </div>
-      </section>
+<script type="module">
+  // =========================
+  // CUSTOMIZE (optional)
+  // =========================
+  const PLAYER_NAME = "Anthony2kold";
+  const STORAGE_KEY = "anthony2kold_creative_hq_v2";
 
-      <!-- Brain Teaser Vault -->
-      <section class="card">
-        <h2>🧠 Vault: Brain Teasers</h2>
-        <p class="tiny">Solve puzzles to unlock rewards. If you rage quit, you owe Dad one “GG.”</p>
-        <div class="list" id="puzzles"></div>
-      </section>
+  // =========================
+  // FIREBASE CONFIG (yours)
+  // NOTE: storageBucket set to .appspot.com for best compatibility
+  // =========================
+  const firebaseConfig = {
+    apiKey: "AIzaSyBq-xu-v3zbA2QkFf1aHjUthdo4XljAV7k",
+    authDomain: "anthony-0327.firebaseapp.com",
+    projectId: "anthony-0327",
+    storageBucket: "anthony-0327.appspot.com",
+    messagingSenderId: "861566800264",
+    appId: "1:861566800264:web:a91653b8be81e26e4aea3d",
+    measurementId: "G-6EV7R63NWY"
+  };
 
-      <!-- Reward Vault -->
-      <section class="card">
-        <h2>🔐 Reward Vault</h2>
-        <p class="tiny">Unlocked rewards appear here. (Yes, these are real.)</p>
-        <div class="list" id="rewards"></div>
-      </section>
-    </div>
+  // Firebase (web CDN modules)
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+  import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+  import {
+    getFirestore, doc, setDoc, collection, onSnapshot
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
-    <p class="tiny" style="margin-top:14px">
-      Note: This is a fan-made companion site. Not affiliated with Epic Games/Fortnite.
-    </p>
-  </div>
+  // =========================
+  // UTIL / STATE
+  // =========================
+  const XP_TIER = 100;
+  const $ = (id) => document.getElementById(id);
 
-  <dialog id="modal">
-    <div class="mTop">
-      <strong id="mTitle">Unlocked!</strong>
-      <button class="x" id="mClose">✖</button>
-    </div>
-    <div class="mBody" id="mBody"></div>
-    <div class="mActions">
-      <button id="mOk">GG ✅</button>
-    </div>
-  </dialog>
-
-<script>
-  // ---- Simple XP/Tier system ----
-  const state = JSON.parse(localStorage.getItem("anthony_hq")) || {
+  const state = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
     xp: 0,
-    rewardsUnlocked: [],
-    missionsDone: {},
-    puzzlesSolved: {}
+    missions: {},
+    puzzles: {},
+    rewards: [],
+    gritClaimed: false
   };
 
-  const XP_PER_TIER = 100;
+  const codesKey = STORAGE_KEY + "_codes";
+  const squadKey = STORAGE_KEY + "_squadboard";
 
-  const modal = document.getElementById("modal");
-  const mTitle = document.getElementById("mTitle");
-  const mBody = document.getElementById("mBody");
-  const openModal = (title, body) => {
-    mTitle.textContent = title;
-    mBody.textContent = body;
+  const clientIdKey = STORAGE_KEY + "_clientId";
+  const clientId = localStorage.getItem(clientIdKey) || crypto.randomUUID();
+  localStorage.setItem(clientIdKey, clientId);
+
+  const squadBoard = JSON.parse(localStorage.getItem(squadKey) || "[]");
+
+  function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+  function tier(){ return Math.floor(state.xp / XP_TIER) + 1; }
+  function prog(){ return state.xp % XP_TIER; }
+
+  // Modal
+  const modal = $("modal");
+  $("mOk").onclick = () => modal.close();
+  function popup(title, body){
+    $("mTitle").textContent = title;
+    $("mBody").textContent = body;
     modal.showModal();
-  };
-  const closeModal = () => modal.close();
-  document.getElementById("mClose").onclick = closeModal;
-  document.getElementById("mOk").onclick = closeModal;
-
-  function save(){ localStorage.setItem("anthony_hq", JSON.stringify(state)); }
-  function tier(){ return Math.floor(state.xp / XP_PER_TIER) + 1; }
-  function progInTier(){ return state.xp % XP_PER_TIER; }
-
-  function renderStats(){
-    document.getElementById("xp").textContent = state.xp;
-    document.getElementById("tier").textContent = tier();
-    document.getElementById("unlocks").textContent = state.rewardsUnlocked.length;
-    const p = progInTier();
-    document.getElementById("bar").style.width = (p / XP_PER_TIER * 100) + "%";
-    document.getElementById("progText").textContent = `${p} / ${XP_PER_TIER} XP to next tier`;
   }
 
-  function addXP(amount, reason){
-    state.xp += amount;
+  // =========================
+  // XP + Rewards
+  // =========================
+  const tierRewards = [
+    { tier: 2, text: "🎮 Reward: 1 hour gaming together (your choice)." },
+    { tier: 3, text: "🍕 Reward: Late-night snack (Dad approves the options 😅)." },
+    { tier: 4, text: "🧱 Reward: Build a new Creative map idea together." }
+  ];
+
+  function unlockReward(text){
+    if (state.rewards.includes(text)) return;
+    state.rewards.push(text);
     save();
-    renderStats();
-    openModal("XP Gained 💥", `${reason} (+${amount} XP)`);
-    checkRewardTiers();
+    renderRewards();
+    popup("🎁 Reward Unlocked!", text);
+    pushFirebase();
   }
 
-  // ---- Missions (funny + real) ----
+  function checkTierRewards(){
+    tierRewards.forEach(r => { if (tier() >= r.tier) unlockReward(r.text); });
+  }
+
+  function addXP(x, why){
+    state.xp += x;
+    save();
+    render();
+    popup("XP Gained 💥", `${why} (+${x} XP)`);
+    checkTierRewards();
+    pushFirebase();
+  }
+
+  // =========================
+  // HARD KNOCKS
+  // =========================
+  const knocks = [
+    "Hard knocks taught you what easy never could. ✅",
+    "Built different. Still humble. Still smart. 😤",
+    "Grit is the real meta.",
+    "You don’t need luck — you’ve got discipline.",
+    "Quiet confidence. Loud results."
+  ];
+  $("knockText").textContent = knocks[Math.floor(Math.random()*knocks.length)];
+  $("claimKnockBtn").onclick = () => {
+    if (state.gritClaimed) return popup("Nice try 😈", "Hard Knocks claim already used this load.");
+    state.gritClaimed = true;
+    save();
+    addXP(10, "🧱 Hard Knocks");
+  };
+
+  // =========================
+  // MISSIONS
+  // =========================
   const missionsData = [
-    { id:"m1", name:"🎒 Straight-A Sweep", xp:40, desc:"Do your school work like a boss. (No cap.)" },
-    { id:"m2", name:"🧹 House Clean Carry", xp:25, desc:"Help around the house. This is the real endgame." },
-    { id:"m3", name:"💪 IRL Warm-Up", xp:20, desc:"Move your body today. Even 15 minutes counts." },
-    { id:"m4", name:"🧠 Creative Builder", xp:35, desc:"Build or improve one Creative map idea." }
+    {id:"m1", name:"📚 Straight-A Sweep", xp:40, desc:"Do school work like a boss. (No cap.)"},
+    {id:"m2", name:"🧹 House Clean Carry", xp:25, desc:"Help around the house. This is the real endgame."},
+    {id:"m3", name:"🚶 IRL Warm-Up", xp:20, desc:"Move your body today. Even 15 minutes counts."},
+    {id:"m4", name:"🎮 Creative Builder", xp:35, desc:"Build or improve one Creative map idea."},
+    {id:"m5", name:"🧪 Science Flex", xp:30, desc:"Learn 1 science fact and explain it back."},
+    {id:"m6", name:"🌍 World Smart Check", xp:25, desc:"Teach 1 world fact (country/capital/event)." }
   ];
 
   function renderMissions(){
-    const box = document.getElementById("missions");
+    const box = $("missions");
     box.innerHTML = "";
     missionsData.forEach(m => {
-      const done = !!state.missionsDone[m.id];
+      const done = !!state.missions[m.id];
       const el = document.createElement("div");
       el.className = "item";
       el.innerHTML = `
-        <div>
-          <div style="font-weight:800">${m.name} <span class="tiny">(+${m.xp} XP)</span></div>
-          <div class="tiny">${m.desc}</div>
+        <div style="flex:1">
+          <div style="font-weight:900">${m.name} <span class="tiny">(+${m.xp} XP)</span></div>
+          <div class="tiny" style="margin-top:4px">${m.desc}</div>
         </div>
         <div class="row">
-          <span class="tag ${done ? "ok" : "warn"}">${done ? "Done" : "Ready"}</span>
-          <button ${done ? "disabled" : ""} data-mid="${m.id}">${done ? "✅" : "Complete"}</button>
+          <span class="tag">${done ? "Done ✅" : "Ready"}</span>
+          <button ${done ? "disabled" : ""}>${done ? "✅" : "Complete"}</button>
         </div>
       `;
       el.querySelector("button").onclick = () => {
-        state.missionsDone[m.id] = true;
+        state.missions[m.id] = true;
         save();
-        renderMissions();
         addXP(m.xp, m.name);
+        renderMissions();
       };
       box.appendChild(el);
     });
   }
 
-  // ---- Brain teasers (strategic) ----
-  // Edit answers if you want. Keep them lowercase in `answer`.
+  // =========================
+  // PUZZLES
+  // =========================
   const puzzlesData = [
-    {
-      id:"p1",
-      name:"🔢 Pattern Check",
-      prompt:"What number completes the sequence: 2, 6, 12, 20, 30, __ ?",
-      hint:"Look at the differences.",
-      answer:"42",
-      reward:"🎬 Reward: Movie night (you pick the movie + snacks).",
-      xp:40
-    },
-    {
-      id:"p2",
-      name:"🧩 Caesar Shift",
-      prompt:"Decode this (shift -3): 'DQWKRQB' → ?",
-      hint:"A=1… or just think letters back 3.",
-      answer:"anthony",
-      reward:"🍔 Reward: Favorite dinner + dessert (your call).",
-      xp:50
-    },
-    {
-      id:"p3",
-      name:"🕵️ House Quest (optional)",
-      prompt:"Riddle: 'I’m cold inside but I’m not the freezer. I keep your quick wins.' Where is it?",
-      hint:"Kitchen vibes.",
-      answer:"fridge",
-      reward:"🔐 Vault clue unlocked (Dad will hand you the next clue).",
-      xp:35
-    }
+    {id:"p1", name:"🔢 Pattern Check", q:"What number completes the sequence: 2, 6, 12, 20, 30, __ ?", hint:"Look at the differences.", a:"42", xp:40, reward:"🎁 Reward: Pick tonight’s snack combo."},
+    {id:"p2", name:"🔐 Caesar Shift", q:"Decode this (shift -3): DQWKRQB", hint:"A=1… or think letters back 3.", a:"anthony", xp:50, reward:"🎁 Reward: You choose dinner (1 night)."},
+    {id:"p3", name:"🧊 House Quest (optional)", q:"Riddle: “I’m cold inside but I’m not the freezer. I keep your quick wins.” Where is it?", hint:"Kitchen vibes.", a:"fridge", xp:35, reward:"🎁 Reward: 1 hour Creative Lab time together."},
+    {id:"p4", name:"🧠 Logic Trap", q:"Bat+ball $1.10 total. Bat $1.00 more. Ball cost?", hint:"Not 0.10.", a:"0.05", xp:50, reward:"🔓 Vault unlock: Dad drops a secret code."}
   ];
 
   function renderPuzzles(){
-    const box = document.getElementById("puzzles");
+    const box = $("puzzles");
     box.innerHTML = "";
     puzzlesData.forEach(p => {
-      const solved = !!state.puzzlesSolved[p.id];
+      const solved = !!state.puzzles[p.id];
       const el = document.createElement("div");
       el.className = "item";
       el.innerHTML = `
         <div style="flex:1">
-          <div style="font-weight:800">${p.name} <span class="tiny">(+${p.xp} XP)</span></div>
-          <div class="tiny" style="margin-top:6px">${p.prompt}</div>
-          <div class="tiny" style="margin-top:6px"><strong>Hint:</strong> ${p.hint}</div>
+          <div style="font-weight:900">${p.name} <span class="tiny">(+${p.xp} XP)</span></div>
+          <div class="tiny" style="margin-top:6px">${p.q}</div>
+          <div class="tiny" style="margin-top:6px"><b>Hint:</b> ${p.hint}</div>
           <div class="row" style="margin-top:8px">
-            <input ${solved ? "disabled" : ""} data-pid="${p.id}" placeholder="Answer..." />
-            <button ${solved ? "disabled" : ""} data-check="${p.id}">${solved ? "Solved ✅" : "Check"}</button>
+            <input ${solved ? "disabled" : ""} placeholder="Answer..." />
+            <button ${solved ? "disabled" : ""}>${solved ? "Solved ✅" : "Check"}</button>
           </div>
         </div>
-        <div><span class="tag ${solved ? "ok" : "warn"}">${solved ? "Unlocked" : "Locked"}</span></div>
+        <span class="tag">${solved ? "Unlocked" : "Locked"}</span>
       `;
       el.querySelector("button").onclick = () => {
-        const input = el.querySelector("input");
-        const guess = (input.value || "").trim().toLowerCase();
-        if (!guess) return openModal("Bruh…", "Type an answer first 😭");
-        if (guess === p.answer){
-          state.puzzlesSolved[p.id] = true;
+        const guess = (el.querySelector("input").value || "").trim().toLowerCase();
+        if (!guess) return popup("Hold up", "Type an answer first 😭");
+        if (guess === p.a){
+          state.puzzles[p.id] = true;
           save();
           addXP(p.xp, p.name);
           unlockReward(p.reward);
           renderPuzzles();
         } else {
-          openModal("❌ Not quite", "Close… but not cracked yet. Try again.");
+          popup("❌ Not quite", "Close… but not cracked yet. Try again.");
         }
       };
       box.appendChild(el);
     });
   }
 
-  // ---- Rewards unlocked by tiers + puzzles ----
-  const tierRewards = [
-    { tier:2, text:"🎮 1 hour of gaming together (your choice)."},
-    { tier:3, text:"🍕 Late-night snack run (Dad pays… somehow 😅)."},
-    { tier:4, text:"🧱 Creative Project: You pick a map theme & we plan it together."},
+  // =========================
+  // FACTS
+  // =========================
+  const facts = [
+    "A day on Venus is longer than a year on Venus.",
+    "Neutron stars are so dense a teaspoon could weigh billions of tons on Earth.",
+    "Antarctica is the world’s largest desert by precipitation.",
+    "Your brain uses roughly 20% of your body’s energy at rest.",
+    "Saturn would float in water (if the tub was big enough).",
+    "Tectonic plates move about as fast as fingernails grow."
   ];
+  let lastFactIndex = null;
+  let factClaimed = true;
 
-  function unlockReward(text){
-    if (state.rewardsUnlocked.includes(text)) return;
-    state.rewardsUnlocked.push(text);
-    save();
-    renderRewards();
-    openModal("🎁 Reward Unlocked!", text);
-  }
+  $("factBtn").onclick = () => {
+    let idx = Math.floor(Math.random()*facts.length);
+    if (lastFactIndex !== null && facts.length > 1) while (idx === lastFactIndex) idx = Math.floor(Math.random()*facts.length);
+    lastFactIndex = idx;
+    factClaimed = false;
+    $("factText").textContent = facts[idx];
+    $("factStatus").textContent = "Explain it back to Dad to claim XP 😄";
+    $("claimFactBtn").disabled = false;
+  };
 
-  function checkRewardTiers(){
-    tierRewards.forEach(r => {
-      if (tier() >= r.tier) unlockReward(r.text);
-    });
-  }
+  $("claimFactBtn").onclick = () => {
+    if (factClaimed) return;
+    factClaimed = true;
+    $("claimFactBtn").disabled = true;
+    $("factStatus").textContent = "XP claimed. Certified cracked. ✅";
+    addXP(15, "🧪 Science Fact Explainer");
+  };
 
-  function renderRewards(){
-    const box = document.getElementById("rewards");
-    box.innerHTML = "";
-    if (!state.rewardsUnlocked.length){
-      box.innerHTML = `<div class="item"><div class="tiny">No rewards unlocked yet. Get cracked. 🧠</div><span class="tag warn">Locked</span></div>`;
-      return;
-    }
-    state.rewardsUnlocked.forEach((t, i) => {
-      const el = document.createElement("div");
-      el.className = "item";
-      el.innerHTML = `<div style="font-weight:700">${t}</div><span class="tag ok">Claimed</span>`;
-      box.appendChild(el);
-    });
-  }
-
-  // ---- Creative codes list ----
+  // =========================
+  // CREATIVE CODES
+  // =========================
   function renderCodes(){
-    const box = document.getElementById("codes");
-    const codes = JSON.parse(localStorage.getItem("anthony_codes") || "[]");
+    const box = $("codes");
+    const codes = JSON.parse(localStorage.getItem(codesKey) || "[]");
     box.innerHTML = "";
     if (!codes.length){
-      box.innerHTML = `<div class="item"><div class="tiny">No island codes yet. Drop one when you’re ready.</div><span class="tag">Creative</span></div>`;
+      box.innerHTML = `<div class="item"><div class="tiny">No island codes yet. Add one when ready.</div><span class="tag">Creative</span></div>`;
       return;
     }
     codes.forEach((c, idx) => {
@@ -443,99 +435,252 @@
       el.className = "item";
       el.innerHTML = `
         <div>
-          <div style="font-weight:800">Island Code</div>
+          <div style="font-weight:900">Island Code</div>
           <div class="tiny">${c}</div>
         </div>
         <div class="row">
-          <button class="ghost" data-copy="${c}">Copy</button>
-          <button data-del="${idx}">Remove</button>
+          <button class="ghost">Copy</button>
+          <button>Remove</button>
         </div>
       `;
-      el.querySelector("[data-copy]").onclick = () => {
-        navigator.clipboard?.writeText(c);
-        openModal("Copied ✅", "Island code copied to clipboard.");
+      el.querySelector(".ghost").onclick = async () => {
+        try { await navigator.clipboard.writeText(c); } catch {}
+        popup("Copied ✅", "Island code copied.");
       };
-      el.querySelector("[data-del]").onclick = () => {
-        codes.splice(idx, 1);
-        localStorage.setItem("anthony_codes", JSON.stringify(codes));
+      el.querySelector("button:not(.ghost)").onclick = () => {
+        codes.splice(idx,1);
+        localStorage.setItem(codesKey, JSON.stringify(codes));
         renderCodes();
       };
       box.appendChild(el);
     });
   }
 
-  document.getElementById("addCodeBtn").onclick = () => {
-    const v = document.getElementById("codeInput").value.trim();
-    if (!v) return openModal("Hold up", "Enter an island code first.");
-    const codes = JSON.parse(localStorage.getItem("anthony_codes") || "[]");
+  $("addCodeBtn").onclick = () => {
+    const v = $("codeInput").value.trim();
+    if (!v) return popup("Hold up", "Enter an island code first.");
+    const codes = JSON.parse(localStorage.getItem(codesKey) || "[]");
     codes.unshift(v);
-    localStorage.setItem("anthony_codes", JSON.stringify(codes));
-    document.getElementById("codeInput").value = "";
+    localStorage.setItem(codesKey, JSON.stringify(codes));
+    $("codeInput").value = "";
     renderCodes();
   };
 
-  document.getElementById("resetBtn").onclick = () => {
-    if (!confirm("Reset XP, missions, puzzles, rewards? (Dad only)")) return;
-    localStorage.removeItem("anthony_hq");
-    state.xp = 0; state.rewardsUnlocked = []; state.missionsDone = {}; state.puzzlesSolved = {};
-    save();
-    renderAll();
-    openModal("Reset ✅", "HQ wiped. Fresh drop.");
+  // =========================
+  // REWARDS UI
+  // =========================
+  function renderRewards(){
+    const box = $("rewards");
+    box.innerHTML = "";
+    if (!state.rewards.length){
+      box.innerHTML = `<div class="item"><div class="tiny">No rewards yet. Get cracked. 🧠</div><span class="tag">Locked</span></div>`;
+      return;
+    }
+    state.rewards.forEach(r => {
+      const el = document.createElement("div");
+      el.className = "item";
+      el.innerHTML = `<div style="font-weight:900">${r}</div><span class="tag">Unlocked</span>`;
+      box.appendChild(el);
+    });
+  }
+
+  // =========================
+  // BACKUP SQUAD EXPORT/IMPORT (no backend)
+  // =========================
+  function toSquadPayload(){
+    return {
+      name: PLAYER_NAME,
+      xp: state.xp,
+      tier: tier(),
+      rewards: state.rewards.length,
+      missionsDone: Object.keys(state.missions).length,
+      puzzlesSolved: Object.keys(state.puzzles).length,
+      ts: Date.now()
+    };
+  }
+  function encodePayload(obj){
+    const json = JSON.stringify(obj);
+    return btoa(unescape(encodeURIComponent(json)));
+  }
+  function decodePayload(code){
+    const json = decodeURIComponent(escape(atob(code.trim())));
+    return JSON.parse(json);
+  }
+  function renderSquadBoard(){
+    const box = $("squadBoard");
+    box.innerHTML = "";
+    const list = [...squadBoard].sort((a,b)=> (b.xp||0)-(a.xp||0));
+    if (!list.length){
+      box.innerHTML = `<div class="item"><div class="tiny">No squad mates imported yet.</div><span class="tag">Squad</span></div>`;
+      return;
+    }
+    list.forEach(m=>{
+      const el = document.createElement("div");
+      el.className = "item";
+      el.innerHTML = `
+        <div>
+          <div style="font-weight:900">${m.label || m.name || "Squadmate"}</div>
+          <div class="tiny">XP: <b>${m.xp}</b> • Tier: <b>${m.tier}</b> • Rewards: <b>${m.rewards}</b></div>
+          <div class="tiny">Missions: ${m.missionsDone} • Puzzles: ${m.puzzlesSolved}</div>
+        </div>
+        <span class="tag">${(m.xp||0) >= state.xp ? "Ahead 🏁" : "Behind 😈"}</span>
+      `;
+      box.appendChild(el);
+    });
+  }
+
+  $("exportBtn").onclick = () => {
+    const code = encodePayload(toSquadPayload());
+    $("exportBox").value = code;
+    $("copyExportBtn").disabled = false;
+    popup("✅ Export Ready", "Copy and send this code to your squad.");
   };
 
-  function renderAll(){
-    renderStats();
+  $("copyExportBtn").onclick = async () => {
+    const code = $("exportBox").value.trim();
+    if (!code) return;
+    try { await navigator.clipboard.writeText(code); } catch {}
+    popup("Copied ✅", "Squad code copied.");
+  };
+
+  $("importBtn").onclick = () => {
+    const code = $("importBox").value.trim();
+    if (!code) return popup("Hold up", "Paste a squad code first.");
+    let payload;
+    try { payload = decodePayload(code); } catch { return popup("❌ Invalid code", "Make sure it copied fully."); }
+    const label = $("importName").value.trim() || payload.name || "Squadmate";
+    const entry = { ...payload, label };
+    const i = squadBoard.findIndex(x=>x.label===label);
+    if (i>=0) squadBoard[i]=entry; else squadBoard.push(entry);
+    localStorage.setItem(squadKey, JSON.stringify(squadBoard));
+    renderSquadBoard();
+    popup("🤝 Imported!", `${label} added to squad board.`);
+  };// =========================
+  // RESET
+  // =========================
+  $("resetBtn").onclick = () => {
+    if (!confirm("Reset XP, missions, puzzles, rewards?")) return;
+    localStorage.removeItem(STORAGE_KEY);
+    state.xp=0; state.missions={}; state.puzzles={}; state.rewards=[]; state.gritClaimed=false;
+    save();
+    render();
+    popup("Reset ✅","Fresh drop.");
+    pushFirebase();
+  };
+
+  // =========================
+  // RENDER
+  // =========================
+  function render(){
+    $("xp").textContent = state.xp;
+    $("tier").textContent = tier();
+    $("rewardsCount").textContent = state.rewards.length;
+    $("bar").style.width = (prog()/XP_TIER*100) + "%";
+    $("progText").textContent = `${prog()} / ${XP_TIER} XP to next tier`;
+    renderCodes();// =========================
+  // RENDER
+  // =========================
+  function render(){
+    $("xp").textContent = state.xp;
+    $("tier").textContent = tier();
+    $("rewardsCount").textContent = state.rewards.length;
+    $("bar").style.width = (prog()/XP_TIER*100) + "%";
+    $("progText").textContent = `${prog()} / ${XP_TIER} XP to next tier`;
+    renderCodes();
     renderMissions();
     renderPuzzles();
     renderRewards();
-    renderCodes();
-    checkRewardTiers();
+    renderSquadBoard();
+    checkTierRewards();
+  }// =========================
+  // FIREBASE: LIVE LEADERBOARD
+  // =========================
+  let fb = { app:null, auth:null, db:null, user:null, roomId:null, unsub:null };
+  try{
+    fb.app = initializeApp(firebaseConfig);
+    fb.auth = getAuth(fb.app);
+    fb.db = getFirestore(fb.app);
+
+    const cred = await signInAnonymously(fb.auth);
+    fb.user = cred.user;
+    $("fbStatus").textContent = "Firebase status: Connected ✅ (anonymous)";
+  }catch(e){
+    console.error(e);
+    $("fbStatus").textContent = "Firebase status: NOT connected ❌ (check Auth/Firestore/Authorized domains)";
+  }
+    function playerPayload(){
+    return {
+      name: PLAYER_NAME,
+      xp: state.xp,
+      tier: tier(),
+      rewards: state.rewards.length,
+      missionsDone: Object.keys(state.missions).length,
+      puzzlesSolved: Object.keys(state.puzzles).length,
+      updatedAt: Date.now()
+    };
   }
 
-  renderAll();
+  let pushTimer = null;
+  async function pushFirebaseNow(){
+    if (!fb.db || !fb.user || !fb.roomId) return;
+    const ref = doc(fb.db, "rooms", fb.roomId, "players", clientId);
+    await setDoc(ref, playerPayload(), { merge:true });
+  }function pushFirebase(){
+    if (!fb.db || !fb.user || !fb.roomId) return;
+    if (pushTimer) clearTimeout(pushTimer);
+    pushTimer = setTimeout(() => { pushFirebaseNow().catch(console.error); }, 250);
+  }
+
+  function renderLeaderboard(rows){
+    const box = $("leaderboard");
+    box.innerHTML = "";
+    if (!rows.length){
+      box.innerHTML = `<div class="item"><div class="tiny">No players yet. Join a room, then you’ll appear.</div><span class="tag">Live</span></div>`;
+      return;
+    }
+    rows.forEach((p, idx) => {
+      const el = document.createElement("div");
+      el.className = "item";
+      const me = (p.id === clientId);
+      el.innerHTML = `
+        <div><div style="font-weight:900">${idx+1}. ${p.name || "Player"} ${me ? "(you)" : ""}</div>
+          <div class="tiny">XP: <b>${p.xp||0}</b> • Tier: <b>${p.tier||1}</b> • Rewards: <b>${p.rewards||0}</b></div>
+        </div>
+        <span class="tag">${me ? "ME ✅" : "LIVE"}</span>
+      `;
+      box.appendChild(el);
+    });
+  }
+
+  function joinRoom(roomIdRaw){
+    if (!fb.db || !fb.user){
+      return popup("Firebase not ready", "Fix Firebase first: enable Anonymous Auth + create Firestore + add Authorized domain.");
+    }
+    const roomId = (roomIdRaw || "").trim().toUpperCase();
+    if (!roomId) return popup("Room code", "Type a room code first.");
+    fb.roomId = roomId;
+
+    // stop previous listener
+    if (fb.unsub) fb.unsub();const playersCol = collection(fb.db, "rooms", fb.roomId, "players");
+    fb.unsub = onSnapshot(playersCol, (snap) => {
+      const rows = [];
+      snap.forEach(d => rows.push({ id:d.id, ...d.data() }));
+      rows.sort((a,b)=> (b.xp||0)-(a.xp||0));
+      $("fbStatus").textContent = `Firebase status: Room ${fb.roomId} (live) ✅`;
+      renderLeaderboard(rows);
+    }, (err) => {
+      console.error(err);
+      $("fbStatus").textContent = "Firebase status: Room listen failed ❌ (check Firestore rules / auth)";
+    });
+
+    pushFirebase();
+  }
+
+  $("joinRoomBtn").onclick = () => joinRoom($("roomInput").value);
+
+  // Boot
+  render();
+
 </script>
 </body>
 </html>
-
-// ---- Science/World facts (random + XP claim) ----
-const facts = [
-  "A day on Venus is longer than a year on Venus (it rotates very slowly).",
-  "Neutron stars are so dense a teaspoon could weigh billions of tons (on Earth).",
-  "The Eiffel Tower can grow about 6 inches taller in summer due to thermal expansion.",
-  "Water can boil and freeze at the same time under special pressure conditions (triple point).",
-  "Octopuses have three hearts and blue blood (copper-based hemocyanin).",
-  "The speed of light is about 299,792,458 meters per second in vacuum.",
-  "Earth’s tectonic plates move about as fast as fingernails grow.",
-  "Saturn could float in water if you had a bathtub big enough (it’s less dense than water).",
-  "Antarctica is technically the world’s largest desert (very low precipitation).",
-  "Your brain uses roughly 20% of your body’s energy, even at rest."
-];
-
-let lastFactIndex = null;
-let factClaimed = false;
-
-function showRandomFact(){
-  let idx = Math.floor(Math.random() * facts.length);
-  if (lastFactIndex !== null && facts.length > 1){
-    while (idx === lastFactIndex) idx = Math.floor(Math.random() * facts.length);
-  }
-  lastFactIndex = idx;
-  factClaimed = false;
-
-  const factText = facts[idx];
-  document.getElementById("factText").textContent = factText;
-  document.getElementById("factStatus").textContent = "Explain it to Dad to claim XP 😄";
-  const claimBtn = document.getElementById("claimFactXpBtn");
-  claimBtn.disabled = false;
-}
-
-function claimFactXP(){
-  if (factClaimed) return;
-  factClaimed = true;
-  document.getElementById("claimFactXpBtn").disabled = true;
-  document.getElementById("factStatus").textContent = "XP claimed. Certified cracked. ✅";
-  addXP(15, "🧪 Science Fact Explainer");
-}
-
-document.getElementById("factBtn")?.addEventListener("click", showRandomFact);
-document.getElementById("claimFactXpBtn")?.addEventListener("click", claimFactXP);
