@@ -496,3 +496,45 @@
 </script>
 </body>
 </html>
+// ---- Science/World facts (random + XP claim) ----
+const facts = [
+  "A day on Venus is longer than a year on Venus (it rotates very slowly).",
+  "Neutron stars are so dense a teaspoon could weigh billions of tons (on Earth).",
+  "The Eiffel Tower can grow about 6 inches taller in summer due to thermal expansion.",
+  "Water can boil and freeze at the same time under special pressure conditions (triple point).",
+  "Octopuses have three hearts and blue blood (copper-based hemocyanin).",
+  "The speed of light is about 299,792,458 meters per second in vacuum.",
+  "Earth’s tectonic plates move about as fast as fingernails grow.",
+  "Saturn could float in water if you had a bathtub big enough (it’s less dense than water).",
+  "Antarctica is technically the world’s largest desert (very low precipitation).",
+  "Your brain uses roughly 20% of your body’s energy, even at rest."
+];
+
+let lastFactIndex = null;
+let factClaimed = false;
+
+function showRandomFact(){
+  let idx = Math.floor(Math.random() * facts.length);
+  if (lastFactIndex !== null && facts.length > 1){
+    while (idx === lastFactIndex) idx = Math.floor(Math.random() * facts.length);
+  }
+  lastFactIndex = idx;
+  factClaimed = false;
+
+  const factText = facts[idx];
+  document.getElementById("factText").textContent = factText;
+  document.getElementById("factStatus").textContent = "Explain it to Dad to claim XP 😄";
+  const claimBtn = document.getElementById("claimFactXpBtn");
+  claimBtn.disabled = false;
+}
+
+function claimFactXP(){
+  if (factClaimed) return;
+  factClaimed = true;
+  document.getElementById("claimFactXpBtn").disabled = true;
+  document.getElementById("factStatus").textContent = "XP claimed. Certified cracked. ✅";
+  addXP(15, "🧪 Science Fact Explainer");
+}
+
+document.getElementById("factBtn")?.addEventListener("click", showRandomFact);
+document.getElementById("claimFactXpBtn")?.addEventListener("click", claimFactXP);
